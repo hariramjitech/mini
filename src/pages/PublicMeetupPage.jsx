@@ -236,7 +236,7 @@ export default function PublicMeetupPage() {
                         </div>
                     </motion.div>
 
-                    {/* CodeSapiens Branding */}
+                    {/* DevNexus Branding */}
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -246,12 +246,12 @@ export default function PublicMeetupPage() {
                         <div className="inline-flex items-center gap-3 bg-white px-6 py-3 rounded-xl shadow-sm border border-gray-100">
                             <img
                                 src="https://res.cloudinary.com/druvxcll9/image/upload/v1761122530/WhatsApp_Image_2025-09-02_at_12.45.18_b15791ea_rnlwrz_3_r4kp2u.jpg"
-                                alt="CodeSapiens"
+                                alt="DevNexus"
                                 className="w-10 h-10 rounded-full object-cover"
                             />
                             <div className="text-left">
                                 <div className="text-xs font-bold text-gray-400 uppercase tracking-widest">Hosted by</div>
-                                <div className="font-bold text-[#1E1E1E]">CodeSapiens</div>
+                                <div className="font-bold text-[#1E1E1E]">DevNexus</div>
                             </div>
                         </div>
                     </motion.div>

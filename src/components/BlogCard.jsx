@@ -161,7 +161,7 @@ const BlogCard = ({ blog, variant = 'default' }) => {
                             {blog.author?.display_name?.charAt(0) || <User className="w-4 h-4" />}
                         </div>
                         <div className="flex flex-col">
-                            <span className="text-xs font-bold text-[#2B2929]">{blog.author?.display_name || 'CodeSapiens'}</span>
+                            <span className="text-xs font-bold text-[#2B2929]">{blog.author?.display_name || 'DevNexus'}</span>
                             <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">{formatDate(blog.published_at)}</span>
                         </div>
                     </div>

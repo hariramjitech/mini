@@ -95,7 +95,7 @@ const LandingPopup = () => {
                                 </div>
                             </div>
 
-                            <h3 className="text-golden-2 font-bold text-white mb-3">Join CodeSapiens</h3>
+                            <h3 className="text-golden-2 font-bold text-white mb-3">Join DevNexus</h3>
                             <p className="text-gray-300 text-golden-1 leading-relaxed">
                                 You can't even finish a coffee in 1 minute, but you can join TN's biggest student community in under <span className="text-[#FF5018] font-bold">20 seconds</span>.
                             </p>

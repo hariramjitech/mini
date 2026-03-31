@@ -350,24 +350,15 @@ const SocialMediaSection = () => {
         {
             name: "LinkedIn",
             icon: <Linkedin size={40} />,
-            link: "https://www.linkedin.com/company/codesapiens-community/posts/",
+            link: "https://www.linkedin.com/company/devnexus-community/posts/",
             color: "bg-[#0077b5]",
             textColor: "text-white",
             span: "col-span-1",
-            badge: "@codesapiens-community",
+            badge: "@devnexus-community",
             isLarge: true,
             backgroundImage: "url('https://res.cloudinary.com/dqudvximt/image/upload/v1767874220/users_cme79i2lk00qls401ar5qxqnc_n74cMGsKIBuvEzzj-users_cme5bsukl01binm014j8ioh2j_2SNEHA31eEqsxFRS-original-33f53dcd2f48e068523d32df0e5cc92f_xkirvh.gif') center/cover no-repeat"
         },
-        {
-            name: "Luma",
-            icon: null,
-            link: "https://lu.ma/codesapiens",
-            color: "bg-black",
-            textColor: "text-white",
-            span: "col-span-1",
-            badge: null,
-            backgroundImage: "url('https://res.cloudinary.com/dqudvximt/image/upload/v1767875075/users_cme79i2lk00qls401ar5qxqnc_WI6Z0HVxNMCrvfgn-ETzJoQJr1aCFL2r7-rrDC9gCyIJ77RqVW-luma_cqxcny.jpg') center/cover no-repeat"
-        },
+// Luma entry removed
         {
             name: "WhatsApp",
             icon: null,
@@ -385,7 +376,7 @@ const SocialMediaSection = () => {
         {
             name: "Instagram",
             icon: <Instagram size={32} />,
-            link: "https://www.instagram.com/codesapiens/",
+            link: "https://www.instagram.com/devnexus/",
             color: "bg-white",
             textColor: "text-black",
             span: "col-span-1",
@@ -398,7 +389,7 @@ const SocialMediaSection = () => {
                     </div>
                     <div className="absolute bottom-0 left-0">
                         <span className="inline-block px-3 py-1.5 rounded-lg text-xs font-bold bg-gray-100 text-gray-800">
-                            @Codesapiens.in
+                            @DevNexus.in
                         </span>
                     </div>
                 </div>
@@ -407,7 +398,7 @@ const SocialMediaSection = () => {
         {
             name: "Twitter",
             icon: <Twitter size={32} className="text-[#1DA1F2]" />,
-            link: "https://twitter.com/codesapiens",
+            link: "https://twitter.com/devnexus",
             color: "bg-white",
             textColor: "text-black",
             span: "col-span-1",
@@ -420,7 +411,7 @@ const SocialMediaSection = () => {
                     </div>
                     <div className="absolute bottom-0 left-0">
                         <span className="inline-block px-3 py-1.5 rounded-lg text-xs font-bold bg-gray-100 text-gray-800">
-                            @codesapiens_in
+                            @devnexus_in
                         </span>
                     </div>
                 </div>
@@ -440,22 +431,22 @@ const SocialMediaSection = () => {
         {
             name: "GitHub",
             icon: <Github size={40} />,
-            link: "https://github.com/Codesapiens-in",
+            link: "https://github.com/DevNexus-in",
             color: "bg-black",
             textColor: "text-white",
             span: "col-span-1",
-            badge: "@Codesapiens-in",
+            badge: "@DevNexus-in",
             isLarge: true,
             backgroundImage: "url('https://res.cloudinary.com/dqudvximt/image/upload/v1767874482/users_cme79i2lk00qls401ar5qxqnc_MOSc1bv3RXu0WL5z-users_cme5bsukl01binm014j8ioh2j_7dOv2cTCX8B86u82-users_clylc5w1v070to301jatq0e85_AdzvY5ioFqaF37x5-github_dsjpx6.gif') center/cover no-repeat"
         },
         {
             name: "YouTube",
             icon: <Youtube size={40} className="text-red-600" />,
-            link: "https://youtube.com/@codesapiens-in?si=90EaPMYHcSZIHtMi",
+            link: "https://youtube.com/@devnexus-in?si=90EaPMYHcSZIHtMi",
             color: "bg-white",
             textColor: "text-black",
             span: "col-span-1",
-            badge: "@Codesapiens",
+            badge: "@DevNexus",
             border: "border-gray-100 border",
             isLarge: true,
             backgroundImage: "url('https://res.cloudinary.com/dqudvximt/image/upload/v1767874488/users_cme79i2lk00qls401ar5qxqnc_Ov9Ygh4NAQfPGktu-users_cme5bsukl01binm014j8ioh2j_5JQAosdeiVappI2y-users_clylc5w1v070to301jatq0e85_CCuEsN5SSMlu4LAN-youtube_aky1f3.gif') center/cover no-repeat"
@@ -598,16 +589,9 @@ const DevNexusHero = () => {
 
 
     const volunteers = [
-        { photo: "https://res.cloudinary.com/druvxcll9/image/upload/v1761122516/2ABMHfqOsrpoL3OV-WhatsApp202025-08-312010.33.52_a8a27bbd_vzcgzq_1_bm8zch.jpg", name: "Keerthana M G", link: "https://in.linkedin.com/in/keerthana-m-g-12ba59256" },
-        { photo: "https://res.cloudinary.com/druvxcll9/image/upload/v1761122517/iAckgTxMcALuPbEx-IMG-20250112-WA0012_1_fwyhoa_oxegdx.jpg", name: "Mahaveer A", link: "https://www.linkedin.com/in/mahaveer1013" },
-        { photo: "https://res.cloudinary.com/druvxcll9/image/upload/v1761122517/4SrLYdwh0tpuLlkt-team_2.a2a0c6917be79e15dc29_wjosq7_ftgm6j.jpg", name: "Justin Benito", link: "https://www.linkedin.com/in/justinbenito" },
-        { photo: "https://res.cloudinary.com/druvxcll9/image/upload/v1761122517/nLDGxnsr6bZkCx0A-team_3.d2fd9099126beb0b86a1_vxhpxo_z3eods.jpg", name: "Koushik ram", link: "https://www.linkedin.com/in/koushik-ram-118495239" },
-        { photo: "https://res.cloudinary.com/druvxcll9/image/upload/v1761122517/Tlgueu6loMYMKJMs-team_1.150894ea4376f6423091_vrf0fr_weljyi.jpg", name: "Athiram R S", link: "https://www.linkedin.com/in/athi-ram-rs" },
-        { photo: "https://res.cloudinary.com/druvxcll9/image/upload/v1761122516/5NmVUZRZI8sRCrZA-1735300455766_h8dhm2_dnully.jpg", name: "Pranav Vikraman", link: "https://www.linkedin.com/in/pranav-vikraman-322020242" },
-        { photo: "https://res.cloudinary.com/druvxcll9/image/upload/v1761122531/JWz1OvtKurqSRsC7-WhatsApp202025-08-312011.22.52_bff7c8bd_mrok7q_b6meyd.jpg", name: "Vignesh R", link: "https://www.linkedin.com/in/vignesh-r-7727582b7" },
-        { photo: "https://res.cloudinary.com/druvxcll9/image/upload/v1761122532/3S8YnOu77Rt2wDJD-WhatsApp202025-08-312010.32.42_9b5cee10_puasao_zekkfa.jpg", name: "Anand S", link: "https://codesapiens-management-website.vercel.app" },
-        { photo: "https://res.cloudinary.com/druvxcll9/image/upload/v1761122531/q5tsA3KUOwgSOpIa-team_5.efc764325a5ffbaf1b6e_1_sidv9r_fhxmqv.jpg", name: "Subhaharini P", link: "https://www.linkedin.com/in/subhaharini-p-938568254" },
-        { photo: "https://res.cloudinary.com/druvxcll9/image/upload/v1761122531/1732031130575_b834gr_1_slc9fw.jpg", name: "Jayasurya R", link: "https://www.linkedin.com/in/jayasurya-r-b37997279/" }
+        { name: "hariramji", link: "https://www.linkedin.com/in/hariramji-t-6469a5310/" },
+        { name: "infant ashil", link: "#" },
+        { name: "Jayasurya", link: "https://www.linkedin.com/in/jayasurya-r-b37997279/" }
     ];
 
     return (
@@ -615,9 +599,11 @@ const DevNexusHero = () => {
             {/* Navigation - Dark Mode for Hero */}
             <nav className="fixed top-0 w-full z-50 bg-[#101010]/90 backdrop-blur-md text-white border-b border-white/10">
                 <div className="container mx-auto px-6 py-6 flex justify-between items-center">
-                    <div className="flex items-center gap-2">
-                        <img src="https://res.cloudinary.com/dqudvximt/image/upload/v1756797708/WhatsApp_Image_2025-09-02_at_12.45.18_b15791ea_rnlwrz.jpg" alt="CodeSapiens Logo" className="w-10 h-10 rounded-full object-cover" />
-                        <span className="text-xl font-bold tracking-tight">DevNexus</span>
+                    <div className="flex items-center gap-3 group cursor-pointer" onClick={() => navigate('/')}>
+                        <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center border border-white/20 shadow-lg group-hover:scale-105 transition-transform overflow-hidden">
+                            <img src="/logo.png" alt="BuildSpace logo" className="w-full h-full object-cover" />
+                        </div>
+                        <span className="text-xl font-black tracking-widest uppercase">BuildSpace</span>
                     </div>
                     <div className="hidden md:flex items-center gap-8 font-medium text-golden-1">
                         <a href="#vision" className="hover:text-[#0061FE] transition-colors">Vision</a>
@@ -698,16 +684,14 @@ const DevNexusHero = () => {
                             transition={{ duration: 0.8, delay: 0.2 }}
                             className="max-w-4xl"
                         >
-                            <h1 className="text-5xl md:text-7xl font-extrabold leading-[1] tracking-tighter mb-8 font-archivo-black">
-                                DevNexus<span className="text-[#0061FE]">.</span>
+                            <h1 className="text-5xl md:text-8xl font-black leading-[1] tracking-tighter mb-8 font-archivo-black uppercase italic italic-indigo-600">
+                                BuildSpace<span className="text-indigo-600">.</span>
                             </h1>
                             <p className="text-golden-1 text-gray-400 max-w-2xl leading-relaxed mb-10 font-light">
-                                The Biggest Student-Run Tech Community in TN.<br />
-                                <span className="text-white block mt-2">The only 'Inter-college students community' by the students for the students</span>
-                                <span className="text-gray-400 block mt-4 text-golden-1 italic">
-                                    We are here to help students build a career in Tech who say, <br />
-                                    <span className="text-white not-italic">“Perusa Pannanum, but enna Pannanum Therla”</span> <br />
-                                    ("Want to do something big, but don't know what to do").
+                                The Open Source Engine for Organic Communities.<br />
+                                <span className="text-white block mt-2 text-xl">The only platform built by community builders, for community builders.</span>
+                                <span className="text-gray-400 block mt-4 text-golden-1 text-lg">
+                                    Launch your own instance in minutes. Host your students, manage events, and scale your impact — <span className="text-indigo-400 font-bold uppercase tracking-widest">Free & Open Source Forever.</span>
                                 </span>
                             </p>
                             <div className="flex flex-col sm:flex-row gap-6">
@@ -729,7 +713,7 @@ const DevNexusHero = () => {
                                 <div className="absolute inset-0 bg-gradient-to-tr from-[#0061FE]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none"></div>
                                 <img
                                     src="https://res.cloudinary.com/dqudvximt/image/upload/v1771005975/Gemini_Generated_Image_il0qzjil0qzjil0q_1_cfh7ix.png"
-                                    alt="CodeSapiens Dashboard"
+                                    alt="DevNexus Dashboard"
                                     className="w-full h-auto object-cover"
                                 />
                             </div>
@@ -761,10 +745,13 @@ const DevNexusHero = () => {
                         <div className="relative md:sticky md:top-32">
                             <span className="text-[#0061FE] font-bold tracking-widest uppercase text-golden-1 mb-4 block">Our Vision</span>
                             <h2 className="text-golden-2 md:text-golden-3 font-bold mb-8 leading-tight">
-                                <span className="text-[#FF5018]">Non-profit</span> community built by <span className="text-[#0061FE]">students</span>, for <span className="text-[#0061FE]">students</span>.
+                                <span className="text-indigo-600">Build Your Own</span> Digital Home. <span className="text-indigo-400">Open Source</span> community engine.
                             </h2>
-                            <p className="text-golden-1 text-gray-600 leading-relaxed mb-8">
-                                Our vision is to bring students together to collaborate, share, and grow. We envision a platform managed by students, for students, where you can build your career based on your interests.
+                            <p className="text-golden-1 text-gray-600 leading-relaxed mb-8 text-lg">
+                                BuildSpace is more than just a site; it's a foundation. Our mission is to provide the tools for any community to collaborate, share, and grow. managed by you, powered by us.
+                                <br /><br />
+                                <span className="bg-indigo-600 text-white px-3 py-1 rounded inline-block font-bold">BRING YOUR OWN DATABASE</span> 
+                                <span className="ml-2 text-sm font-mono text-gray-500 italic block mt-2">Connect Supabase, Cloudinary, and your SMTP — you're live.</span>
                             </p>
                             <div className="grid grid-cols-2 gap-8 border-t border-gray-200 pt-8">
                                 <div>
@@ -885,41 +872,76 @@ const DevNexusHero = () => {
             <section id="community" className="py-8 md:py-16 bg-[#F7F5F2] text-[#1E1919]">
                 <div className="container mx-auto px-6 text-center">
                     <span className="text-[#0061FE] font-bold tracking-widest uppercase text-xs md:text-sm text-golden-1 mb-2 block">Community</span>
-                    <h2 className="text-2xl md:text-4xl text-golden-2 md:text-golden-3 font-bold mb-3">The Mafia Gang</h2>
+                    <h2 className="text-2xl md:text-4xl text-golden-2 md:text-golden-3 font-black uppercase italic tracking-widest mb-3">The BuildSpace Core</h2>
                     <p className="text-golden-1 text-gray-600 text-sm md:text-base max-w-2xl mx-auto mb-8">
                         Meet the core members who run the community. We are students, just like you.
                     </p>
 
-                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-y-6 gap-x-2 md:gap-x-4">
-                        {/* Founder */}
-                        <div className="col-span-2 md:col-span-1 flex flex-col items-center group">
-                            <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden mb-3 border-4 border-[#FA5D00] shadow-lg group-hover:scale-105 transition-transform">
-                                <img src="https://res.cloudinary.com/druvxcll9/image/upload/v1761122517/1679197646322_n1svjq_s5w42a.jpg" alt="Thiyaga B" className="w-full h-full object-cover" />
-                            </div>
-                            <h3 className="font-bold text-golden-2 mb-0.5 text-sm md:text-base">Thiyaga B</h3>
-                            <p className="text-[#FA5D00] text-golden-1 font-bold uppercase tracking-widest text-[10px] md:text-xs mb-1">Founder</p>
-                            <a href="https://www.linkedin.com/in/thiyagab/" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-[#0061FE] transition-colors"><Linkedin size={14} /></a>
-                        </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-3xl mx-auto">
                         {volunteers.map((vol, i) => (
                             <motion.div
                                 key={i}
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                transition={{ delay: i * 0.05 }}
-                                className="flex flex-col items-center group"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ delay: i * 0.1 }}
+                                className="flex flex-col items-center group bg-white/50 backdrop-blur-sm p-6 rounded-3xl border border-white shadow-sm hover:shadow-xl transition-all hover:-translate-y-1"
                             >
-                                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden mb-2 grayscale group-hover:grayscale-0 transition-all duration-500 border-2 border-transparent group-hover:border-[#0061FE] shadow-md">
-                                    <img src={vol.photo} alt={vol.name} className="w-full h-full object-cover" />
+                                <div className="w-20 h-20 rounded-full mb-4 flex items-center justify-center font-black text-2xl shadow-lg transition-transform group-hover:scale-110 overflow-hidden
+                                    bg-gradient-to-br from-[#2B2929] to-black text-[#FFD600] border-4 border-white">
+                                    {vol.photo ? (
+                                        <img src={vol.photo} alt={vol.name} className="w-full h-full object-cover" />
+                                    ) : (
+                                        vol.name.split(' ').map(n => n[0]).join('').toUpperCase()
+                                    )}
                                 </div>
-                                <h3 className="font-bold text-golden-1 mb-0.5 text-xs md:text-sm">{vol.name}</h3>
+                                <h3 className="font-black text-golden-1 mb-2 text-[#2B2929]">{vol.name}</h3>
                                 {vol.link && (
-                                    <a href={vol.link} target="_blank" rel="noreferrer" className="text-gray-400 hover:text-[#0061FE] transition-colors mt-1">
-                                        <Linkedin size={12} />
+                                    <a href={vol.link} target="_blank" rel="noreferrer" className="p-2 bg-gray-50 rounded-xl text-gray-400 hover:text-[#0061FE] transition-colors">
+                                        <Linkedin size={18} />
                                     </a>
                                 )}
                             </motion.div>
                         ))}
                     </div>
+
+                    {/* Special Thanks & Collaboration */}
+                    <motion.div 
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        className="mt-24 pt-20 border-t border-gray-100"
+                    >
+                        <div className="inline-flex items-center gap-2 bg-[#FFC845]/10 px-4 py-2 rounded-full font-bold text-xs text-[#B48A14] mb-4">
+                            <Sparkles size={14} />
+                            <span>COLLABORATION & OPEN SOURCE</span>
+                        </div>
+                        <h2 className="text-3xl md:text-5xl font-black text-[#2B2929] tracking-tighter mb-6 uppercase">Special Thanks</h2>
+                        <div className="max-w-4xl mx-auto bg-white/40 p-8 md:p-12 rounded-[2.5rem] border border-white shadow-2xl backdrop-blur-md relative overflow-hidden group">
+                           <p className="text-xl md:text-2xl text-gray-600 font-medium leading-relaxed relative z-10">
+                             Heartfelt appreciation to <span className="text-[#0061FE] font-black">CodeSapiens</span>. 
+                             BuildSpace is an open-source project created for them and with them. 
+                             It's a shared mission to empower students to build their own organic communities and grow together. 
+                             This platform is a testament to collaborative open-source engineering.
+                           </p>
+                           
+                           <div className="mt-8 flex flex-wrap justify-center gap-4 relative z-10">
+                              <span className="bg-white px-6 py-2 rounded-2xl border border-gray-100 text-xs font-black text-[#2B2929] shadow-sm">OPEN SOURCE COLLAB</span>
+                              <span className="bg-[#2B2929] px-6 py-2 rounded-2xl text-xs font-black text-white shadow-lg">STUDENT ENGINE</span>
+                              <span className="bg-white px-6 py-2 rounded-2xl border border-gray-100 text-xs font-black text-[#2B2929] shadow-sm">B2B COMMUNITY</span>
+                           </div>
+                        </div>
+                    </motion.div>
+
+                    {/* Community Shoutout */}
+                    <motion.div 
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        className="mt-20 text-center"
+                    >
+                         <p className="text-[10px] md:text-xs font-black text-gray-400 uppercase tracking-[0.3em] mb-4">Shoutout</p>
+                         <h4 className="text-xl md:text-3xl font-black text-[#2B2929]/40 tracking-tight leading-snug max-w-2xl mx-auto italic">
+                           "A digital haven for students to bridge the gap between <span className="text-gray-900 not-italic">learning</span> and <span className="text-gray-900 not-italic">building</span>. Join the room, start the stream."
+                         </h4>
+                    </motion.div>
                 </div>
             </section>
 
@@ -938,35 +960,33 @@ const DevNexusHero = () => {
                 <div className="container mx-auto px-6">
                     <div className="flex flex-col md:flex-row justify-between items-start gap-12">
                         <div className="max-w-sm">
-                            <div className="flex items-center gap-2 mb-6">
-                                <img src="https://res.cloudinary.com/druvxcll9/image/upload/v1761122530/WhatsApp_Image_2025-09-02_at_12.45.18_b15791ea_rnlwrz_3_r4kp2u.jpg" alt="CodeSapiens Logo" className="w-8 h-8 rounded-full object-cover" />
-                                <span className="text-2xl font-bold text-white tracking-tight">DevNexus</span>
+                            <div className="flex items-center gap-3 mb-6">
+                                <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center border border-white/20 shadow-lg overflow-hidden">
+                                    <img src="/logo.png" alt="BuildSpace logo" className="w-full h-full object-cover" />
+                                </div>
+                                <span className="text-2xl font-black text-white tracking-widest uppercase italic">BuildSpace</span>
                             </div>
                             <p className="text-gray-500 leading-relaxed mb-8">
-                                Empowering students to build, learn, and grow together. Join the biggest student tech community in Tamil Nadu.
+                                The B2B Open Source Engine for Organic Communities. Launch your own instance, manage your members, and build something big.
                             </p>
                             <div className="flex gap-6">
-                                <a href="https://github.com/Codesapiens-in" className="text-gray-400 hover:text-white transition-colors"><Github size={20} /></a>
-                                <a href="https://www.linkedin.com/company/codesapiens-community/posts/" className="text-gray-400 hover:text-white transition-colors"><Linkedin size={20} /></a>
-                                <a href="https://youtube.com/@codesapiens-in?si=90EaPMYHcSZIHtMi" className="text-gray-400 hover:text-white transition-colors"><Youtube size={20} /></a>
-                                <a href="https://discord.gg/codesapiens" className="text-gray-400 hover:text-white transition-colors"><Users size={20} /></a>
+                                <a href="https://github.com/BuildSpace-OS" className="text-gray-400 hover:text-white transition-colors"><Github size={20} /></a>
                             </div>
                         </div>
                         <div className="grid grid-cols-1 gap-16">
                             <div>
-                                <h4 className="text-white font-bold mb-6">Community</h4>
-                                <ul className="space-y-4 text-golden-1">
-                                    <li><a href="#vision" className="hover:text-[#0061FE] transition-colors">About Us</a></li>
-                                    <li><a href="#events" className="hover:text-[#0061FE] transition-colors">Events</a></li>
-                                    <li><a href="#community" className="hover:text-[#0061FE] transition-colors">Team</a></li>
-                                    <li><a href="#" className="hover:text-[#0061FE] transition-colors">Join Discord</a></li>
+                                <h4 className="text-white font-bold mb-6">Platform</h4>
+                                <ul className="space-y-4 text-golden-1 text-sm">
+                                    <li><a href="#vision" className="hover:text-indigo-400 transition-colors uppercase tracking-widest">About Platform</a></li>
+                                    <li><a href="/auth" className="hover:text-indigo-400 transition-colors uppercase tracking-widest">Launch Community</a></li>
+                                    <li><a href="#community" className="hover:text-indigo-400 transition-colors uppercase tracking-widest">Our Team</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div className="mt-16 pt-8 border-t border-gray-900 flex flex-col md:flex-row justify-between items-center text-golden-1 text-gray-600">
-                        <p>© 2025 DevNexus Community. All rights reserved.</p>
-                        <p>Designed & Built by Students.</p>
+                    <div className="mt-16 pt-8 border-t border-gray-900 flex flex-col md:flex-row justify-between items-center text-golden-1 text-gray-600 text-xs">
+                        <p>© 2025 BuildSpace Engine. All rights reserved.</p>
+                        <p>Powered by Open Source.</p>
                     </div>
                 </div>
             </footer>

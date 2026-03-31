@@ -129,7 +129,7 @@ const BlogListPage = () => {
                                 BLOGS
                             </h1>
                             <p className="text-xl md:text-2xl font-medium text-[#2B2929]/70">
-                                Insights from the CodeSapiens universe
+                                Insights from the DevNexus ecosystem
                             </p>
                         </div>
 

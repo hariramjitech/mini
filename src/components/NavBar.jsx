@@ -338,15 +338,11 @@ export default function NavBar() {
   const renderLogo = () => {
     return (
       <div className="flex items-center space-x-3 flex-shrink-0 cursor-pointer group" onClick={() => navigate(isAdmin ? '/admin' : '/')}>
-        <div className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center overflow-hidden rounded-full shadow-sm transition-transform duration-300 group-hover:scale-105">
-          <img
-            src="https://res.cloudinary.com/druvxcll9/image/upload/v1761122530/WhatsApp_Image_2025-09-02_at_12.45.18_b15791ea_rnlwrz_3_r4kp2u.jpg"
-            alt="Logo"
-            className="w-full h-full object-cover"
-          />
+        <div className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center overflow-hidden rounded-xl shadow-lg transition-transform duration-300 group-hover:scale-105">
+          <img src="/logo.png" alt="BuildSpace logo" className="w-full h-full object-cover" />
         </div>
-        <span className="text-lg sm:text-xl font-light tracking-wider text-zinc-900 group-hover:text-zinc-700 transition-colors">
-          {isAdmin ? 'DevNexus Admin' : 'DevNexus'}
+        <span className="text-lg sm:text-xl font-black tracking-widest text-zinc-900 group-hover:text-zinc-700 transition-colors uppercase">
+          {isAdmin ? 'BuildSpace Admin' : 'BuildSpace'}
         </span>
       </div>
     );
@@ -472,10 +468,7 @@ export default function NavBar() {
                   <FileCheck2 className="w-4 h-4 mr-3 flex-shrink-0" />
                   <span>My Submissions</span>
                 </button>
-                <button onClick={() => { setIsProfileDropdownOpen(false); navigate('https://luma.com/codesapiens?period=past'); }} className="w-full text-left flex items-center px-4 py-2 text-sm text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900 transition-colors">
-                  <CalendarSearch className="w-4 h-4 mr-3 flex-shrink-0" />
-                  <span>Events</span>
-                </button>
+                {/* Luma Events link removed */}
                 <button onClick={() => { setIsProfileDropdownOpen(false); navigate('/meetups'); }} className="w-full text-left flex items-center px-4 py-2 text-sm text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900 transition-colors">
                   <Users className="w-4 h-4 mr-3 flex-shrink-0" />
                   <span>Meetups</span>

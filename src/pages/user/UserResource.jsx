@@ -3,7 +3,7 @@ import React from 'react'
 const UserResource = () => {
   return (
     <iframe
-      src="https://codesapiens-resources.vercel.app/"
+      src="https://devnexus-resources.vercel.app/"
       title="User Resource"
       style={{
         width: "100%",

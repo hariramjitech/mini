@@ -49,7 +49,7 @@ const LoadingScreen = ({ onComplete }) => {
             <div className="absolute inset-0 bg-white text-black flex flex-col items-center justify-center">
                 {/* Centered Content */}
                 <div className="text-4xl md:text-6xl font-bold tracking-tighter uppercase relative z-10">
-                    CodeSapiens
+                    BuildSpace
                 </div>
 
                 {/* Bottom Right Percentage */}
@@ -80,7 +80,7 @@ const LoadingScreen = ({ onComplete }) => {
                 <div className="w-screen h-screen flex flex-col items-center justify-center relative">
                     {/* Centered Content - must match Layer 1 EXACTLY */}
                     <div className="text-4xl md:text-6xl font-bold tracking-tighter uppercase relative z-10">
-                        CodeSapiens
+                        BuildSpace
                     </div>
 
                     {/* Bottom Right Percentage - must match Layer 1 EXACTLY */}

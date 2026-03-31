@@ -365,7 +365,7 @@ export default function UserDashboard() {
 
                 <div className="mt-auto z-10">
                   <h2 className="text-4xl font-bold mb-1 tracking-tight">{userData?.displayName}</h2>
-                  <p className="text-white/60 text-lg mb-8 font-mono">{userData?.college || "Codesapiens Univ"}</p>
+                  <p className="text-white/60 text-lg mb-8 font-mono">{userData?.college || "DevNexus Institute"}</p>
 
 
                 </div>
@@ -504,7 +504,7 @@ export default function UserDashboard() {
 
           {/* 7. RESOURCES - Cyan */}
           <BentoCard
-            className="bg-[#00C6F7] text-[#2B2929]"
+            className="col-span-1 md:col-span-2 bg-[#00C6F7] text-[#2B2929]"
             onClick={(e) => handleCardClick(e, '/resource', '#00C6F7')}
             delay={0.6}
           >
@@ -537,25 +537,7 @@ export default function UserDashboard() {
             )}
           </BentoCard>
 
-          {/* 8. EVENTS (Luma) - White/Cream */}
-          <BentoCard
-            className="bg-white text-[#2B2929] border border-gray-200"
-            onClick={() => window.open("https://luma.com/codesapiens", "_blank")}
-            delay={0.7}
-          >
-            {(isHovered) => (
-              <>
-                <div className="flex justify-between items-start">
-                  <Calendar className="w-10 h-10 stroke-[2.5]" />
-                  <ExternalLinkIcon isHovered={isHovered} />
-                </div>
-                <div className="mt-auto">
-                  <h3 className="text-3xl font-black tracking-tighter mb-2">LUMA<br />EVENTS</h3>
-                  <p className="text-gray-500 font-medium">Register now</p>
-                </div>
-              </>
-            )}
-          </BentoCard>
+          {/* Luma card removed */}
 
         </div>
       </div>

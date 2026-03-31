@@ -7,7 +7,7 @@ import {
   useUser,
 } from '@supabase/auth-helpers-react';
 import { supabase } from './lib/supabaseClient';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Loader2 } from 'lucide-react';
 import PageTransition from './components/PageTransition';
@@ -133,6 +133,12 @@ const AnimatedRoutes = () => {
         <Route path="/admin/form-builder" element={<PageTransition><AdminFormBuilder /></PageTransition>} />
         <Route path="/admin/form-builder/:id" element={<PageTransition><AdminFormBuilder /></PageTransition>} />
 
+        {/* Redirect /auth to / if logged in */}
+        <Route path="/auth" element={<Navigate to="/" replace />} />
+        
+        {/* Redirect singular /community to plural /communities list */}
+        <Route path="/community" element={<Navigate to="/communities" replace />} />
+        
         <Route path="*" element={<PageTransition><NotFoundPage /></PageTransition>} />
       </Routes>
     </AnimatePresence>
@@ -148,7 +154,7 @@ function Root() {
       <div className="flex items-center justify-center min-h-screen bg-gray-50">
         <div className="flex flex-col items-center gap-4">
           <Loader2 className="w-10 h-10 text-indigo-600 animate-spin" />
-          <p className="text-gray-500 font-medium">Loading CodeSapiens...</p>
+          <p className="text-gray-500 font-medium">Loading DevNexus...</p>
         </div>
       </div>
     );

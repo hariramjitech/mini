@@ -323,7 +323,7 @@ const UserCodingPlatform = () => {
       {/* Top Bar (Keep existing) */}
       <div className="h-14 border-b border-gray-700 flex items-center justify-between px-4 bg-[#1E1E1E]">
         <div className="flex items-center gap-4">
-          <h1 className="font-bold text-lg text-white">CodeSapiens <span className="text-[#0061FE]">IDE</span></h1>
+          <h1 className="font-bold text-lg text-white">DevNexus <span className="text-[#0061FE]">IDE</span></h1>
           <div className="h-6 w-[1px] bg-gray-600"></div>
           <select
             className="bg-transparent text-sm font-medium text-gray-300 focus:outline-none cursor-pointer max-w-[200px]"

@@ -135,16 +135,12 @@ export default function AuthForm() {
 
         <div className="relative z-10 flex flex-col justify-between p-16 h-full text-zinc-50">
           <div>
-            <div className="w-12 h-12 mb-8 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center border border-white/20">
-              <img
-                src="https://res.cloudinary.com/druvxcll9/image/upload/v1761122530/WhatsApp_Image_2025-09-02_at_12.45.18_b15791ea_rnlwrz_3_r4kp2u.jpg"
-                alt="Logo"
-                className="w-8 h-8 rounded-full object-cover"
-              />
+            <div className="w-12 h-12 mb-8 bg-black rounded-xl flex items-center justify-center border border-white/20 shadow-lg overflow-hidden">
+              <img src="/logo.png" alt="devcommunity logo" className="w-full h-full object-cover" />
             </div>
             <h1 className="text-5xl font-light tracking-wide leading-tight mb-6">
               Welcome to <br />
-              <span className="font-semibold">CodeSapiens</span>
+              <span className="font-black text-indigo-400 italic italic uppercase tracking-tighter">BuildSpace</span>
             </h1>
             <p className="text-xl text-zinc-400 font-light max-w-md leading-relaxed">
               Join the biggest student-run tech community. Connect, learn, and build your future with us.
@@ -153,7 +149,7 @@ export default function AuthForm() {
 
           <div className="space-y-4">
             <div className="flex items-center space-x-4 text-zinc-400 text-sm font-light">
-              <span>© 2025 CodeSapiens</span>
+              <span>© 2025 BuildSpace</span>
               <span className="w-1 h-1 bg-zinc-600 rounded-full"></span>
               <span>Privacy Policy</span>
               <span className="w-1 h-1 bg-zinc-600 rounded-full"></span>

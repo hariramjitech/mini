@@ -37,7 +37,9 @@ const BreadCrumbs = () => {
                 </li>
 
                 {pathnames.map((value, index) => {
-                    const to = `/${pathnames.slice(0, index + 1).join('/')}`;
+                    const to = value === 'community' && index === 0 
+                        ? '/communities' 
+                        : `/${pathnames.slice(0, index + 1).join('/')}`;
                     const isLast = index === pathnames.length - 1;
 
                     return (

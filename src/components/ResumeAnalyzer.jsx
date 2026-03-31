@@ -321,7 +321,7 @@ const ResumeAnalyzer = () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'x-client-source': 'codesapiens-web'
+                    'x-client-source': 'buildspace-web'
                 },
                 body: JSON.stringify({
                     resumeText,

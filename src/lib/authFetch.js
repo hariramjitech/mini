@@ -13,7 +13,7 @@ export async function authFetch(input, init = {}) {
 
   // 2️⃣ If a user is logged in, attach the token
   const authHeaders = {
-    "x-client-source": "codesapiens-web",
+    "x-client-source": "buildspace-web",
   };
   if (session?.access_token) {
     authHeaders["Authorization"] = `Bearer ${session.access_token}`;
