@@ -16,9 +16,6 @@ import helmet from "helmet";
 import timeout from "express-timeout-handler";
 
 
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-
-
 dotenv.config({ debug: true });
 
 const app = express();
@@ -1134,6 +1131,7 @@ app.get("/api/public-stats", async (req, res) => {
 app.post("/api/analyze-resume", async (req, res) => {
   try {
     const { resumeText, jobDescription, analysisMode } = req.body;
+    const GEMINI_API_KEY = process.env.GEMINI_API_KEY || process.env.VITE_GEMINI_API_KEY;
 
     if (!GEMINI_API_KEY) {
       console.error("GEMINI_API_KEY is not set in environment variables");

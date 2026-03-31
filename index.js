@@ -18,7 +18,7 @@ app.use(express.urlencoded({ limit: '50mb', extended: true }));
 // Supabase client - reads from your .env file
 const supabaseUrl = process.env.VITE_SUPABASE_URL;
 const supabaseKey = process.env.VITE_SUPABASE_ANON_KEY;
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+// GEMINI_API_KEY is resolved inside the handler
 
 if (!supabaseUrl || !supabaseKey) {
   console.error("ERROR: Missing VITE_SUPABASE_URL or VITE_SUPABASE_ANON_KEY in .env file");
@@ -145,6 +145,7 @@ app.get("/", (req, res) => {
 app.post("/api/analyze-resume", async (req, res) => {
   try {
     const { resumeText, jobDescription, analysisMode } = req.body;
+    const GEMINI_API_KEY = process.env.GEMINI_API_KEY || process.env.VITE_GEMINI_API_KEY;
 
     if (!GEMINI_API_KEY) {
       console.error("GEMINI_API_KEY is not set in environment variables");

@@ -568,7 +568,7 @@ const NoticeSection = () => {
 };
 
 // --- Main Hero Component ---
-const CodeSapiensHero = () => {
+const DevNexusHero = () => {
     const navigate = useNavigate();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [hallOfFameEntries, setHallOfFameEntries] = useState([]);
@@ -617,7 +617,7 @@ const CodeSapiensHero = () => {
                 <div className="container mx-auto px-6 py-6 flex justify-between items-center">
                     <div className="flex items-center gap-2">
                         <img src="https://res.cloudinary.com/dqudvximt/image/upload/v1756797708/WhatsApp_Image_2025-09-02_at_12.45.18_b15791ea_rnlwrz.jpg" alt="CodeSapiens Logo" className="w-10 h-10 rounded-full object-cover" />
-                        <span className="text-xl font-bold tracking-tight">CodeSapiens</span>
+                        <span className="text-xl font-bold tracking-tight">DevNexus</span>
                     </div>
                     <div className="hidden md:flex items-center gap-8 font-medium text-golden-1">
                         <a href="#vision" className="hover:text-[#0061FE] transition-colors">Vision</a>
@@ -699,7 +699,7 @@ const CodeSapiensHero = () => {
                             className="max-w-4xl"
                         >
                             <h1 className="text-5xl md:text-7xl font-extrabold leading-[1] tracking-tighter mb-8 font-archivo-black">
-                                CodeSapiens<span className="text-[#0061FE]">.</span>
+                                DevNexus<span className="text-[#0061FE]">.</span>
                             </h1>
                             <p className="text-golden-1 text-gray-400 max-w-2xl leading-relaxed mb-10 font-light">
                                 The Biggest Student-Run Tech Community in TN.<br />
@@ -940,7 +940,7 @@ const CodeSapiensHero = () => {
                         <div className="max-w-sm">
                             <div className="flex items-center gap-2 mb-6">
                                 <img src="https://res.cloudinary.com/druvxcll9/image/upload/v1761122530/WhatsApp_Image_2025-09-02_at_12.45.18_b15791ea_rnlwrz_3_r4kp2u.jpg" alt="CodeSapiens Logo" className="w-8 h-8 rounded-full object-cover" />
-                                <span className="text-2xl font-bold text-white tracking-tight">CodeSapiens</span>
+                                <span className="text-2xl font-bold text-white tracking-tight">DevNexus</span>
                             </div>
                             <p className="text-gray-500 leading-relaxed mb-8">
                                 Empowering students to build, learn, and grow together. Join the biggest student tech community in Tamil Nadu.
@@ -965,7 +965,7 @@ const CodeSapiensHero = () => {
                         </div>
                     </div>
                     <div className="mt-16 pt-8 border-t border-gray-900 flex flex-col md:flex-row justify-between items-center text-golden-1 text-gray-600">
-                        <p>© 2025 CodeSapiens Community. All rights reserved.</p>
+                        <p>© 2025 DevNexus Community. All rights reserved.</p>
                         <p>Designed & Built by Students.</p>
                     </div>
                 </div>
@@ -975,4 +975,4 @@ const CodeSapiensHero = () => {
     );
 };
 
-export default CodeSapiensHero;
+export default DevNexusHero;

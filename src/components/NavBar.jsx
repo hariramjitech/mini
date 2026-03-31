@@ -346,7 +346,7 @@ export default function NavBar() {
           />
         </div>
         <span className="text-lg sm:text-xl font-light tracking-wider text-zinc-900 group-hover:text-zinc-700 transition-colors">
-          {isAdmin ? 'CodeSapiens Admin' : 'CodeSapiens'}
+          {isAdmin ? 'DevNexus Admin' : 'DevNexus'}
         </span>
       </div>
     );

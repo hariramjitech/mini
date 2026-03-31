@@ -1,7 +1,8 @@
 {
-  "name": "colleges-api",
+  "name": "mini-backend",
   "version": "1.0.0",
-  "description": "API to get all the colleges in India",
+  "type": "module",
+  "description": "Base API for Mini Project",
   "main": "index.js",
   "dependencies": {
     "@supabase/supabase-js": "^2.76.1",
@@ -26,14 +27,5 @@
   "scripts": {
     "start": "node index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/SriGuruCoimbatore/colleges-api.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/SriGuruCoimbatore/colleges-api/issues"
-  },
-  "homepage": "https://github.com/SriGuruCoimbatore/colleges-api#readme"
+  "license": "ISC"
 }

@@ -25,7 +25,7 @@ import UserDashboard from './pages/user/UserDashboard';
 import NavBar from './components/NavBar';
 import AnalyticsPage from './pages/admin/AnalyticsPage';
 import NotFoundPage from './components/ui/NotFoundPage';
-import CodeSapiensHero from './components/CodeSapiensHero';
+import DevNexusHero from "./components/DevNexusHero";
 import AllUserList from './pages/admin/AllUserList';
 import ResetPassword from './pages/ResetPassword';
 import ResetPasswordConfirm from './pages/ResetPasswordConfirm'
@@ -158,7 +158,7 @@ function Root() {
     return (
       <div className="flex flex-col min-h-screen">
         <Routes>
-          <Route path="/" element={<CodeSapiensHero />} />
+          <Route path="/" element={<DevNexusHero />} />
           <Route path="/auth" element={<AuthForm />} />
           <Route path="/admin/hall-of-fame" element={<AdminHallOfFame />} />
           <Route path="/admin/community-photos" element={<AdminCommunityPhotos />} />
