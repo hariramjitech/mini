@@ -1,0 +1,49 @@
+import React, { useState, useEffect } from 'react';
+import { Loader2 } from 'lucide-react';
+import { supabase } from '../lib/supabaseClient';
+import { useNavigate } from 'react-router-dom';
+
+const AdminLayout = ({ children }) => {
+    const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchProfile = async () => {
+            try {
+                const { data: { user } } = await supabase.auth.getUser();
+                if (user) {
+                    const { data: rows } = await supabase
+                        .from('users')
+                        .select('*')
+                        .eq('uid', user.id);
+                    // Use rows?.[0] if needed in the future
+                }
+            } catch (error) {
+                console.error('Error fetching profile:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchProfile();
+    }, [navigate]);
+
+    if (loading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-slate-50">
+                <Loader2 className="w-8 h-8 animate-spin text-indigo-600" />
+            </div>
+        );
+    }
+
+    return (
+        <div className="min-h-screen bg-slate-50">
+            {/* Main Content Area */}
+            <main className="p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto">
+                {children}
+            </main>
+        </div>
+    );
+};
+
+export default AdminLayout;
