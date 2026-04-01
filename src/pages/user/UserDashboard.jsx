@@ -537,7 +537,47 @@ export default function UserDashboard() {
             )}
           </BentoCard>
 
-          {/* Luma card removed */}
+          {/* NEW: RESUME ANALYZER - Vibrant Pink */}
+          <BentoCard
+            className="bg-[#FF0080] text-white"
+            onClick={(e) => handleCardClick(e, '/resume-analyzer', '#FF0080')}
+            delay={0.65}
+            hoverColor="#000000"
+          >
+            {(isHovered) => (
+              <>
+                <div className="flex justify-between items-start">
+                  <BrainCircuit className="w-10 h-10 stroke-[2]" />
+                  <ArrowUpRight className={`w-8 h-8 ${isHovered ? 'translate-x-1 -translate-y-1' : ''} transition-transform`} />
+                </div>
+                <div className="mt-auto">
+                  <h3 className="text-3xl font-black mb-2 tracking-tight">AI Resume</h3>
+                  <p className="text-white/80 font-medium">Analyze & Improve</p>
+                </div>
+              </>
+            )}
+          </BentoCard>
+
+          {/* NEW: CODE PLATFORM - Deep Blue/Indigo */}
+          <BentoCard
+            className="bg-[#4F46E5] text-white"
+            onClick={(e) => handleCardClick(e, '/code', '#4F46E5')}
+            delay={0.7}
+            hoverColor="#000000"
+          >
+            {(isHovered) => (
+              <>
+                <div className="flex justify-between items-start">
+                  <Code className="w-10 h-10 stroke-[2]" />
+                  <ArrowUpRight className={`w-8 h-8 ${isHovered ? 'translate-x-1 -translate-y-1' : ''} transition-transform`} />
+                </div>
+                <div className="mt-auto">
+                  <h3 className="text-3xl font-black mb-2 tracking-tight">Code IDE</h3>
+                  <p className="text-white/80 font-medium">Solve DSA Problems</p>
+                </div>
+              </>
+            )}
+          </BentoCard>
 
         </div>
       </div>

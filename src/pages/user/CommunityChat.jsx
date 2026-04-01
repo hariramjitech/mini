@@ -145,20 +145,14 @@ export default function CommunityChat() {
           filter: `community_id=eq.${id}`
         },
         async (payload) => {
-          // Fetch sender info 
-          const { data } = await supabase
-            .from('users')
-            .select('display_name, avatar, username')
-            .eq('uid', payload.new.user_id)
-            .single();
+          // Check if message already exists (from polling or optimistic update)
+          setMessages(prev => {
+            if (prev.some(m => m.id === payload.new.id)) return prev;
 
-          const completeMessage = {
-            ...payload.new,
-            users: data
-          };
-
-          setMessages(prev => [...prev, completeMessage]);
-          scrollToBottom();
+            // Fetch sender info if missing (optimistic updates already have it)
+            fetchSenderInfo(payload.new);
+            return prev;
+          });
         }
       )
       .on('presence', { event: 'sync' }, () => {
@@ -186,6 +180,86 @@ export default function CommunityChat() {
       
     setChannel(newChannel);
   };
+
+  const fetchSenderInfo = async (msg) => {
+    const { data } = await supabase
+      .from('users')
+      .select('display_name, avatar, username')
+      .eq('uid', msg.user_id)
+      .single();
+
+    const completeMessage = {
+      ...msg,
+      users: data
+    };
+
+    setMessages(prev => {
+      if (prev.some(m => m.id === msg.id)) return prev;
+      const next = [...prev, completeMessage].sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+      return next;
+    });
+    scrollToBottom();
+  };
+
+  const fetchNewMessages = async () => {
+    if (!id || !user) return;
+    
+    // Get the highest timestamp in current messages
+    // Note: We use a functional update later, but here we can just use the state
+    // because it's called in an interval that stays fresh enough for polling.
+    // However, setMessages(prev => ...) is safer.
+    
+    setMessages(prev => {
+      const lastMessage = [...prev].reverse().find(m => !m.is_optimistic);
+      const lastTimestamp = lastMessage ? lastMessage.created_at : new Date(0).toISOString();
+
+      (async () => {
+          try {
+            const { data, error } = await supabase
+              .from('chat_messages')
+              .select(`
+                id, content, created_at, user_id,
+                users ( display_name, avatar, username )
+              `)
+              .eq('community_id', id)
+              .gt('created_at', lastTimestamp)
+              .order('created_at', { ascending: true });
+
+            if (error) throw error;
+            if (data && data.length > 0) {
+              const mappedNewMessages = data.map(m => ({
+                ...m,
+                users: Array.isArray(m.users) ? m.users[0] : m.users
+              }));
+
+              setMessages(current => {
+                const existingIds = new Set(current.map(m => m.id));
+                const uniqueNew = mappedNewMessages.filter(m => !existingIds.has(m.id));
+                if (uniqueNew.length === 0) return current;
+                
+                const next = [...current, ...uniqueNew].sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+                return next;
+              });
+              setTimeout(() => scrollToBottom(), 100);
+            }
+          } catch (err) {
+            console.error("Polling error:", err);
+          }
+      })();
+      
+      return prev;
+    });
+  };
+
+  useEffect(() => {
+    if (!id || !user) return;
+    
+    const pollInterval = setInterval(() => {
+      fetchNewMessages();
+    }, 1000);
+
+    return () => clearInterval(pollInterval);
+  }, [id, user]);
 
   const getDisplayName = (userData, userId) => {
     // 1. Priority: Your own metadata if it is you
@@ -233,6 +307,24 @@ export default function CommunityChat() {
     const content = newMessage.trim();
     setNewMessage('');
     
+    // 1. Optimistic Update: Add message to UI immediately
+    const tempId = `temp-${Date.now()}`;
+    const optimisticMsg = {
+      id: tempId,
+      content,
+      created_at: new Date().toISOString(),
+      user_id: user.id,
+      is_optimistic: true, // Mark it so we can replace it later
+      users: {
+        display_name: user.user_metadata?.display_name || user.user_metadata?.full_name || "You",
+        avatar: user.user_metadata?.avatar || null,
+        username: user.user_metadata?.username || null
+      }
+    };
+
+    setMessages(prev => [...prev, optimisticMsg]);
+    setTimeout(() => scrollToBottom(true), 50);
+
     if (channel) {
       channel.send({
         type: 'broadcast',
@@ -242,18 +334,34 @@ export default function CommunityChat() {
     }
 
     try {
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from('chat_messages')
         .insert({
           community_id: id,
           user_id: user.id,
           content: content
-        });
+        })
+        .select(`
+          id, content, created_at, user_id,
+          users ( display_name, avatar, username )
+        `)
+        .single();
         
       if (error) throw error;
+
+      // 2. Replace optimistic message with real message
+      if (data) {
+        const realMsg = {
+          ...data,
+          users: Array.isArray(data.users) ? data.users[0] : data.users
+        };
+        setMessages(prev => prev.map(m => m.id === tempId ? realMsg : m));
+      }
     } catch (error) {
       console.error("Failed to send:", error);
       toast.error("Message not sent.");
+      // Remove optimistic message if failed
+      setMessages(prev => prev.filter(m => m.id !== tempId));
       setNewMessage(content);
     } finally {
       setSending(false);
