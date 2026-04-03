@@ -41,6 +41,7 @@ import academicData from "../../assets/academic.json";
 import "../../styles/profile-animations.css";
 import { BACKEND_URL } from '../../config';
 import { authFetch } from "../../lib/authFetch";
+import { useAccessibility } from "../../context/AccessibilityContext";
 
 // --- CUSTOM VISUAL COMPONENTS ---
 
@@ -139,6 +140,8 @@ const UserProfile = () => {
   const [newSkill, setNewSkill] = useState("");
   const [editingSkillIndex, setEditingSkillIndex] = useState(null);
   const [editingSkillValue, setEditingSkillValue] = useState("");
+  const { preferences, updatePreferences } = useAccessibility();
+  const [selectedA11yMode, setSelectedA11yMode] = useState(preferences.mode || 'default');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [authChecking, setAuthChecking] = useState(true);
@@ -313,6 +316,13 @@ const UserProfile = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  // Update local a11y selection when context changes
+  useEffect(() => {
+    if (preferences?.mode) {
+      setSelectedA11yMode(preferences.mode);
+    }
+  }, [preferences]);
 
 
 
@@ -690,6 +700,16 @@ const UserProfile = () => {
     } catch (err) {
       console.error(err);
       toast.error("Failed to update personal details");
+    }
+  };
+
+  const handleSaveA11y = async () => {
+    try {
+      await updatePreferences({ ...preferences, mode: selectedA11yMode });
+      toast.success("Accessibility preferences updated!");
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to update accessibility settings");
     }
   };
 

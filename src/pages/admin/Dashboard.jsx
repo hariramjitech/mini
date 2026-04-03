@@ -212,6 +212,14 @@ const Dashboard = () => {
       desc: "Create & View Submissions",
       color: "#C2E812", // Lime
       onClick: () => navigate('/admin/programs')
+    },
+    {
+      icon: MessageSquare,
+      label: "COMMUNITIES",
+      desc: "Manage Chat Hubs",
+      color: "#FF5018",
+      textColor: "text-white",
+      onClick: () => navigate('/admin/communities')
     }
   ];
 

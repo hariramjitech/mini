@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {
     ArrowLeft, Save, Eye, Loader2, X, Image as ImageIcon,
-    FileText, Clock
+    FileText, Clock, ExternalLink
 } from 'lucide-react';
 import ReactQuill from 'react-quill-new';
 import 'react-quill-new/dist/quill.snow.css';
@@ -318,6 +318,17 @@ const AdminBlogEditor = () => {
                             </div>
                         </div>
                         <div className="flex items-center gap-3">
+                            {isEditing && formData.status === 'published' && (
+                                <a
+                                    href={`/blog/${formData.slug}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg font-medium transition-colors"
+                                >
+                                    <ExternalLink className="w-5 h-5 mr-2" />
+                                    View Live
+                                </a>
+                            )}
                             <button
                                 onClick={() => setPreviewMode(!previewMode)}
                                 className={`inline-flex items-center px-4 py-2 rounded-lg font-medium transition-colors ${previewMode

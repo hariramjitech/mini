@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../../lib/supabaseClient';
 import { motion } from 'framer-motion';
-import { Calendar, ChevronDown, Loader2, X, ArrowRight, Sparkles, Terminal, Code2 } from 'lucide-react';
+import { Calendar, ChevronDown, Loader2, X, ArrowRight, Sparkles, Terminal, Code2, MessageSquare } from 'lucide-react';
+import { toast } from 'react-hot-toast';
 
 // --- SVG DOODLES (Doorway Scene) ---
 const DoorwayScene = () => (
@@ -51,6 +52,9 @@ const UserMentorshipFormList = () => {
   const [expandedIndex, setExpandedIndex] = useState(null);
   const [authChecking, setAuthChecking] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [communities, setCommunities] = useState([]);
+  const [myCommunities, setMyCommunities] = useState([]);
+  const [user, setUser] = useState(null);
 
   // Fetch user's mentorship submissions
   useEffect(() => {
@@ -60,19 +64,21 @@ const UserMentorshipFormList = () => {
         setLoading(true);
         setError(null);
 
-        const { data: { user }, error: authError } = await supabase.auth.getUser();
+        const { data: { user: currentUser }, error: authError } = await supabase.auth.getUser();
 
-        if (authError || !user) {
+        if (authError || !currentUser) {
           setIsAuthenticated(false);
           return;
         }
 
         setIsAuthenticated(true);
+        setUser(currentUser);
 
+        // Fetch user profile with requests
         const { data: userRows, error: userError } = await supabase
           .from('users')
           .select('mentorship_request')
-          .eq('uid', user.id);
+          .eq('uid', currentUser.id);
 
         const userData = userRows?.[0];
 
@@ -80,6 +86,20 @@ const UserMentorshipFormList = () => {
           setError(userError.message);
           return;
         }
+
+        // Fetch public communities
+        const { data: commData } = await supabase
+            .from('chat_communities')
+            .select('*')
+            .eq('is_public', true);
+        setCommunities(commData || []);
+
+        // Fetch user's community memberships
+        const { data: myCommData } = await supabase
+            .from('chat_community_members')
+            .select('community_id')
+            .eq('user_id', currentUser.id);
+        setMyCommunities(myCommData?.map(m => m.community_id) || []);
 
         if (!userData || !userData.mentorship_request) {
           setSubmissions([]);
@@ -119,6 +139,49 @@ const UserMentorshipFormList = () => {
 
   const toggleExpand = (index) => {
     setExpandedIndex(expandedIndex === index ? null : index);
+  };
+
+  const refreshMemberships = async () => {
+    if (!user) return;
+    const { data: myCommData } = await supabase
+        .from('chat_community_members')
+        .select('community_id')
+        .eq('user_id', user.id);
+    setMyCommunities(myCommData?.map(m => m.community_id) || []);
+  };
+
+  const handleJoinCommunity = async (communityId) => {
+    try {
+        const { error } = await supabase
+            .from('chat_community_members')
+            .insert({
+                community_id: communityId,
+                user_id: user.id,
+                role: 'member'
+            });
+
+        if (error && error.code !== '23505') throw error;
+        
+        toast.success('Joined Community Hub!');
+        refreshMemberships();
+    } catch (err) {
+        console.error('Error joining community:', err);
+        toast.error('Failed to join community.');
+    }
+  };
+
+  const findMatchingCommunities = (submission) => {
+    if (!submission) return [];
+    const searchTerms = [
+        submission.domain,
+        ...(submission.skillsToDevelop || []),
+        ...(submission.topicsInterested || [])
+    ].filter(Boolean).map(t => t.toLowerCase());
+
+    return communities.filter(c => {
+        const commName = c.name.toLowerCase();
+        return searchTerms.some(term => commName.includes(term) || term.includes(commName));
+    }).slice(0, 2); // Max 2 matches to keep it clean
   };
 
   if (authChecking || loading) {
@@ -308,6 +371,43 @@ const UserMentorshipFormList = () => {
                           </div>
                         </div>
                       </div>
+
+                      {/* Linked Communities Section */}
+                      {(() => {
+                        const matches = findMatchingCommunities(submission);
+                        if (matches.length === 0) return null;
+                        
+                        return (
+                          <div className="mt-8 pt-8 border-t border-[#1E1E1E]/5">
+                            <div className="flex items-center gap-2 mb-4 text-xs font-bold text-gray-400 uppercase tracking-widest">
+                                <MessageSquare className="w-4 h-4" /> Recommended Communities
+                            </div>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                              {matches.map(match => {
+                                const isJoined = myCommunities.includes(match.id);
+                                return (
+                                  <div key={match.id} className="flex items-center justify-between p-4 bg-white border border-[#1E1E1E]/10 rounded-xl">
+                                    <div>
+                                      <h6 className="font-bold text-[#1E1E1E] text-sm">{match.name}</h6>
+                                      <p className="text-xs text-gray-400">Community Discussion Hub</p>
+                                    </div>
+                                    <button
+                                      onClick={() => isJoined ? (window.location.href = `/community/${match.id}`) : handleJoinCommunity(match.id)}
+                                      className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${
+                                        isJoined 
+                                          ? 'bg-gray-100 text-gray-600 hover:bg-gray-200' 
+                                          : 'bg-[#C2E812] text-[#1E1E1E] hover:shadow-[2px_2px_0px_#1E1E1E]'
+                                      }`}
+                                    >
+                                      {isJoined ? 'Open Chat' : 'Join Now'}
+                                    </button>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        );
+                      })()}
                     </div>
                   </motion.div>
                 </motion.div>

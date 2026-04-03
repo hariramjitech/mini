@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../../lib/supabaseClient';
 import { Link } from 'react-router-dom';
-import { Calendar, Users, ArrowRight, Loader2, CheckCircle, UserPlus, X, AlertCircle } from 'lucide-react';
+import { Calendar, Users, ArrowRight, Loader2, CheckCircle, UserPlus, X, AlertCircle, MessageSquare, Globe } from 'lucide-react';
+import { toast } from 'react-hot-toast';
 
 const MentorshipLanding = () => {
     const [programs, setPrograms] = useState([]);
     const [myRegistrations, setMyRegistrations] = useState([]);
+    const [communities, setCommunities] = useState([]);
+    const [myCommunities, setMyCommunities] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [user, setUser] = useState(null);
@@ -50,6 +53,20 @@ const MentorshipLanding = () => {
 
                 if (regError) throw regError;
                 setMyRegistrations(regData || []);
+
+                // Fetch public communities
+                const { data: commData } = await supabase
+                    .from('chat_communities')
+                    .select('*')
+                    .eq('is_public', true);
+                setCommunities(commData || []);
+
+                // Fetch user's community memberships
+                const { data: myCommData } = await supabase
+                    .from('chat_community_members')
+                    .select('community_id')
+                    .eq('user_id', currentUser.id);
+                setMyCommunities(myCommData?.map(m => m.community_id) || []);
             }
 
         } catch (err) {
@@ -249,6 +266,41 @@ const MentorshipLanding = () => {
             .select('*, mentorship_teams(name)')
             .eq('user_id', user.id);
         setMyRegistrations(regData || []);
+
+        // Also refresh memberships
+        const { data: myCommData } = await supabase
+            .from('chat_community_members')
+            .select('community_id')
+            .eq('user_id', user.id);
+        setMyCommunities(myCommData?.map(m => m.community_id) || []);
+    };
+
+    const handleJoinCommunity = async (communityId) => {
+        try {
+            const { error } = await supabase
+                .from('chat_community_members')
+                .insert({
+                    community_id: communityId,
+                    user_id: user.id,
+                    role: 'member'
+                });
+
+            if (error && error.code !== '23505') throw error;
+            
+            toast.success('Joined Community Hub!');
+            refreshRegistrations();
+        } catch (err) {
+            console.error('Error joining community:', err);
+            toast.error('Failed to join community.');
+        }
+    };
+
+    const findMatchingCommunity = (programTitle) => {
+        if (!programTitle) return null;
+        return communities.find(c => 
+            c.name.toLowerCase().includes(programTitle.toLowerCase()) || 
+            programTitle.toLowerCase().includes(c.name.toLowerCase())
+        );
     };
 
     if (loading) {
@@ -366,7 +418,7 @@ const MentorshipLanding = () => {
                                                 to={`/programs/${program.id}`}
                                                 className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700"
                                             >
-                                                Go to Dashboard
+                                                Go to Program Hub
                                                 <ArrowRight className="ml-2 -mr-1 w-4 h-4" />
                                             </Link>
                                         ) : invitationStatus === 'pending' ? (
@@ -402,6 +454,32 @@ const MentorshipLanding = () => {
                                                 Registration Closed
                                             </button>
                                         )}
+
+                                        {/* Linked Community Section */}
+                                        {(() => {
+                                            const match = findMatchingCommunity(program.title);
+                                            if (!match) return null;
+                                            const isJoined = myCommunities.includes(match.id);
+                                            
+                                            return (
+                                                <div className="pt-4 border-t border-gray-100 mt-4">
+                                                    <div className="flex items-center gap-2 mb-2 text-xs font-bold text-gray-400 uppercase tracking-widest">
+                                                        <MessageSquare className="w-3 h-3" /> Community Hub
+                                                    </div>
+                                                    <button
+                                                        onClick={() => isJoined ? (window.location.href = `/community/${match.id}`) : handleJoinCommunity(match.id)}
+                                                        className={`w-full flex items-center justify-center gap-2 px-4 py-2 border-2 ${
+                                                            isJoined 
+                                                                ? 'border-gray-200 text-gray-600 hover:bg-gray-50' 
+                                                                : 'border-blue-100 text-blue-600 hover:bg-blue-50'
+                                                        } rounded-xl text-sm font-bold transition-all`}
+                                                    >
+                                                        {isJoined ? 'Open Discussion' : 'Join Discussion Hub'}
+                                                        <ArrowRight className="w-4 h-4" />
+                                                    </button>
+                                                </div>
+                                            );
+                                        })()}
                                     </div>
                                 </div>
                             </div>

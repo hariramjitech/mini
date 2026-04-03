@@ -126,4 +126,50 @@
         -ms-overflow-style: none;
         scrollbar-width: none;
     }
+
+    /* ADAPTIVE ACCESSIBILITY STYLES */
+
+    /* 1. High Contrast Mode */
+    body.high-contrast {
+        --brand-blue: #0000FF;
+        --brand-dark: #000000;
+        --brand-cream: #FFFFFF;
+        background-color: #FFFFFF !important;
+        color: #000000 !important;
+    }
+
+    body.high-contrast *, 
+    body.high-contrast h1, 
+    body.high-contrast h2, 
+    body.high-contrast h3, 
+    body.high-contrast p {
+        color: #000000 !important;
+    }
+
+    body.high-contrast .bg-white,
+    body.high-contrast .bg-gray-50,
+    body.high-contrast .bg-zinc-50 {
+        background-color: #FFFFFF !important;
+        border: 2px solid #000000 !important;
+    }
+
+    /* 2. Large Text Mode */
+    body.large-text {
+        font-size: 1.25rem;
+    }
+
+    body.large-text h1 { font-size: 4rem; }
+    body.large-text h2 { font-size: 3rem; }
+    body.large-text p { font-size: 1.5rem; }
+
+    /* 3. Reduced Motion Mode */
+    body.reduced-motion * {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+    }
+
+    body.reduced-motion .motion-safe-only {
+        display: none !important;
+    }
 }

@@ -4,6 +4,7 @@ import {
   Zap, LogOut, ChevronRight, PenTool, Calendar,
   FileText, Handshake, MapPin, X, BookOpen, BrainCircuit, Code
 } from "lucide-react";
+import { useAccessibility } from '../../context/AccessibilityContext';
 import { supabase } from "../../lib/supabaseClient";
 import { useUser } from '@supabase/auth-helpers-react';
 import { useNavigate } from "react-router-dom";
@@ -42,14 +43,16 @@ const TypographyVisual = ({ isHovered }) => (
 
 const BentoCard = ({ children, className, onClick, delay = 0, hoverColor }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const { preferences } = useAccessibility();
+  const shouldReduceMotion = preferences.mode === 'neurodiversity' || preferences.reducedMotion;
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      whileInView={{ opacity: 1, scale: 1 }}
+      initial={shouldReduceMotion ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+      whileInView={shouldReduceMotion ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay, ease: "easeOut" }}
-      whileHover={{ y: -5, transition: { duration: 0.2 } }}
+      transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.5, delay, ease: "easeOut" }}
+      whileHover={shouldReduceMotion ? {} : { y: -5, transition: { duration: 0.2 } }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
       onClick={onClick}
@@ -462,8 +465,50 @@ export default function UserDashboard() {
               </>
             )}
           </BentoCard>
+          
+          {/* NEW: BLOGS - Indigo/Blue */}
+          <BentoCard
+            className="bg-[#3B82F6] text-white"
+            onClick={(e) => handleCardClick(e, '/blogs', '#3B82F6')}
+            delay={0.49}
+            hoverColor="#000000"
+          >
+            {(isHovered) => (
+              <>
+                <div className="flex justify-between items-start">
+                  <FileText className="w-10 h-10 stroke-[2]" />
+                  <ArrowUpRight className={`w-8 h-8 ${isHovered ? 'translate-x-1 -translate-y-1' : ''} transition-transform`} />
+                </div>
+                <div className="mt-auto">
+                  <h3 className="text-3xl font-black mb-2 tracking-tight">Blogs</h3>
+                  <p className="text-white/80 font-medium">Explore stories</p>
+                </div>
+              </>
+            )}
+          </BentoCard>
 
-          {/* 6. ATTENDED MEETUPS LIST (Replaces Analytics) - Lavender */}
+          {/* NEW: RESUME ANALYZER - Vibrant Pink */}
+          <BentoCard
+            className="bg-[#FF0080] text-white"
+            onClick={(e) => handleCardClick(e, '/resume-analyzer', '#FF0080')}
+            delay={0.5}
+            hoverColor="#000000"
+          >
+            {(isHovered) => (
+              <>
+                <div className="flex justify-between items-start">
+                  <BrainCircuit className="w-10 h-10 stroke-[2]" />
+                  <ArrowUpRight className={`w-8 h-8 ${isHovered ? 'translate-x-1 -translate-y-1' : ''} transition-transform`} />
+                </div>
+                <div className="mt-auto">
+                  <h3 className="text-3xl font-black mb-2 tracking-tight">AI Resume</h3>
+                  <p className="text-white/80 font-medium">Analyze & Improve</p>
+                </div>
+              </>
+            )}
+          </BentoCard>
+
+          {/* 6. ATTENDED MEETUPS LIST - Lavender */}
           <BentoCard
             className="col-span-1 md:col-span-2 bg-[#D8C3F8] relative overflow-hidden"
             delay={0.5}
@@ -491,8 +536,8 @@ export default function UserDashboard() {
                       </div>
                     ))
                   ) : (
-                    <div className="h-full flex flex-col items-center justify-center text-center opacity-60">
-                      <Calendar className="w-12 h-12 mb-2" />
+                    <div className="h-full flex flex-col items-center justify-center text-center opacity-60 py-8">
+                      <Calendar className="w-12 h-12 mb-2 mx-auto" />
                       <p className="font-medium">No meetups yet.</p>
                       <button onClick={(e) => handleCardClick(e, '/meetups', '#FFD600')} className="text-sm underline mt-1">Register for one!</button>
                     </div>
@@ -537,30 +582,9 @@ export default function UserDashboard() {
             )}
           </BentoCard>
 
-          {/* NEW: RESUME ANALYZER - Vibrant Pink */}
+          {/* NEW: CODE PLATFORM - Deep Blue/Indigo - FULL WIDTH FINISH */}
           <BentoCard
-            className="bg-[#FF0080] text-white"
-            onClick={(e) => handleCardClick(e, '/resume-analyzer', '#FF0080')}
-            delay={0.65}
-            hoverColor="#000000"
-          >
-            {(isHovered) => (
-              <>
-                <div className="flex justify-between items-start">
-                  <BrainCircuit className="w-10 h-10 stroke-[2]" />
-                  <ArrowUpRight className={`w-8 h-8 ${isHovered ? 'translate-x-1 -translate-y-1' : ''} transition-transform`} />
-                </div>
-                <div className="mt-auto">
-                  <h3 className="text-3xl font-black mb-2 tracking-tight">AI Resume</h3>
-                  <p className="text-white/80 font-medium">Analyze & Improve</p>
-                </div>
-              </>
-            )}
-          </BentoCard>
-
-          {/* NEW: CODE PLATFORM - Deep Blue/Indigo */}
-          <BentoCard
-            className="bg-[#4F46E5] text-white"
+            className="col-span-1 md:col-span-2 lg:col-span-4 bg-[#4F46E5] text-white"
             onClick={(e) => handleCardClick(e, '/code', '#4F46E5')}
             delay={0.7}
             hoverColor="#000000"
@@ -568,12 +592,22 @@ export default function UserDashboard() {
             {(isHovered) => (
               <>
                 <div className="flex justify-between items-start">
-                  <Code className="w-10 h-10 stroke-[2]" />
-                  <ArrowUpRight className={`w-8 h-8 ${isHovered ? 'translate-x-1 -translate-y-1' : ''} transition-transform`} />
+                  <div className="flex items-center gap-4">
+                     <Code className="w-14 h-14 stroke-[2.5]" />
+                     <div>
+                        <h3 className="text-4xl font-black tracking-tight">SOLVE DSA CHALLENGES</h3>
+                        <p className="text-white/60 font-medium">Practice coding in our integrated IDE.</p>
+                     </div>
+                  </div>
+                  <ArrowUpRight className={`w-12 h-12 ${isHovered ? 'translate-x-2 -translate-y-2 text-[#C2E812]' : ''} transition-all`} />
                 </div>
-                <div className="mt-auto">
-                  <h3 className="text-3xl font-black mb-2 tracking-tight">Code IDE</h3>
-                  <p className="text-white/80 font-medium">Solve DSA Problems</p>
+                
+                <div className="mt-12 flex flex-wrap gap-3">
+                   {['Arrays', 'Strings', 'Linked Lists', 'Trees', 'Graphs', 'DP'].map(tag => (
+                     <span key={tag} className="px-4 py-2 bg-white/10 rounded-lg text-sm font-bold border border-white/5 backdrop-blur-sm">
+                        {tag}
+                     </span>
+                   ))}
                 </div>
               </>
             )}

@@ -58,6 +58,7 @@ import AdminBlogEditor from './pages/admin/AdminBlogEditor';
 import AdminBlogEmailer from './pages/admin/AdminBlogEmailer';
 import BlogListPage from './pages/BlogListPage';
 import BlogDetail from './pages/user/BlogDetail';
+import AdminCommunities from './pages/admin/AdminCommunities';
 import AdminHallOfFame from './pages/admin/AdminHallOfFame';
 import AdminCommunityPhotos from './pages/admin/AdminCommunityPhotos';
 import AdminFeedbackList from './pages/admin/AdminFeedbackList';
@@ -69,6 +70,7 @@ import AdminProgramSubmissions from './pages/admin/AdminProgramSubmissions';
 import AdminProgramsList from './pages/admin/AdminProgramsList';
 import UserCommunitiesList from './pages/user/UserCommunitiesList';
 import CommunityChat from './pages/user/CommunityChat';
+import { AccessibilityProvider } from './context/AccessibilityContext';
 
 
 const AnimatedRoutes = () => {
@@ -139,6 +141,9 @@ const AnimatedRoutes = () => {
         {/* Redirect singular /community to plural /communities list */}
         <Route path="/community" element={<Navigate to="/communities" replace />} />
         
+        {/* Community Management */}
+        <Route path="/admin/communities" element={<PageTransition><AdminCommunities /></PageTransition>} />
+        
         <Route path="*" element={<PageTransition><NotFoundPage /></PageTransition>} />
       </Routes>
     </AnimatePresence>
@@ -187,12 +192,14 @@ function Root() {
 
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <main className="flex-grow">
-        <NavBar />
-        <AnimatedRoutes />
-      </main>
-    </div>
+    <AccessibilityProvider>
+      <div className="flex flex-col min-h-screen">
+        <main className="flex-grow">
+          <NavBar />
+          <AnimatedRoutes />
+        </main>
+      </div>
+    </AccessibilityProvider>
   );
 }
 

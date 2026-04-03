@@ -5,9 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabaseClient';
 import { useUser } from '@supabase/auth-helpers-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useAccessibility } from '../context/AccessibilityContext';
 
 export default function NavBar() {
   const user = useUser();
+  const { preferences } = useAccessibility();
+  const shouldReduceMotion = preferences.mode === 'neurodiversity' || preferences.reducedMotion;
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [userData, setUserData] = useState(null);
@@ -381,6 +384,10 @@ export default function NavBar() {
               <FileText className="w-4 h-4" />
               <span>Blogs</span>
             </button>
+            <button onClick={() => navigate('/admin/communities')} className={`${baseClass} ${hoverColor}`}>
+              <Users className="w-4 h-4" />
+              <span>Communities</span>
+            </button>
           </div>
         </div>
       );
@@ -395,10 +402,10 @@ export default function NavBar() {
     return (
       <AnimatePresence>
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: -10 }}
+          initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, scale: 0.95, y: -10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: -10 }}
-          transition={{ duration: 0.2 }}
+          exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.95, y: -10 }}
+          transition={shouldReduceMotion ? { duration: 0 } : { type: "spring", duration: 0.3 }}
           ref={profileDropdownRef}
           className="bg-white/90 backdrop-blur-xl rounded-xl shadow-2xl border border-zinc-200/50 py-2"
           style={{
@@ -477,6 +484,10 @@ export default function NavBar() {
                   <BookOpen className="w-4 h-4 mr-3 flex-shrink-0" />
                   <span>Programs</span>
                 </button>
+                <button onClick={() => { setIsProfileDropdownOpen(false); navigate('/blogs'); }} className="w-full text-left flex items-center px-4 py-2 text-sm text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900 transition-colors">
+                  <FileText className="w-4 h-4 mr-3 flex-shrink-0" />
+                  <span>Blogs</span>
+                </button>
 
               </>
             )}
@@ -537,6 +548,10 @@ export default function NavBar() {
               <button onClick={() => navigate('/admin/blogs')} className={`w-full text-left block px-4 py-2 text-zinc-600 hover:bg-zinc-50 ${hoverColor} rounded-md font-light transition-colors flex items-center space-x-2`}>
                 <FileText className="w-4 h-4" />
                 <span>Blogs</span>
+              </button>
+              <button onClick={() => navigate('/admin/communities')} className={`w-full text-left block px-4 py-2 text-zinc-600 hover:bg-zinc-50 ${hoverColor} rounded-md font-light transition-colors flex items-center space-x-2`}>
+                <Users className="w-4 h-4" />
+                <span>Communities</span>
               </button>
             </>
           )}
